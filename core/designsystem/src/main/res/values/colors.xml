@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="yellow_50">#FFD31C</color>
+    <color name="grayscale_10">#ECEFF2</color>
+    <color name="grayscale_30">#C5CDD3</color>
+    <color name="grayscale_50">#7D888C</color>
+    <color name="grayscale_70">#515860</color>
+</resources>

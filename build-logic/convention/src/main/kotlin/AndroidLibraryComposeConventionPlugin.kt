@@ -1,5 +1,5 @@
 import com.android.build.gradle.LibraryExtension
-import com.eosr14.example.gallery.configureAndroidCompose
+import com.eosr14.kakao.search.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType

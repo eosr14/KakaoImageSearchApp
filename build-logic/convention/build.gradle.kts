@@ -2,7 +2,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.eosr14.example.deliveryapp.buildlogic"
+group = "com.eosr14.kakao.search.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
