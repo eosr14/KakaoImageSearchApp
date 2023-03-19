@@ -7,6 +7,7 @@ plugins {
 
 dependencies {
     implementation(project(":core:model"))
+
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling)

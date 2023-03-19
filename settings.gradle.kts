@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "KaKaoImageSearchApp"
 include(":app")
+include(":core:navigation")
 include(":core:datastore")
 include(":core:designsystem")
 include(":core:model")
