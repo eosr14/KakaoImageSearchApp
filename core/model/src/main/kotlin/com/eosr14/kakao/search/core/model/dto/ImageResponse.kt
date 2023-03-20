@@ -2,6 +2,7 @@ package com.eosr14.kakao.search.core.model.dto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class ImageResponse(
@@ -32,5 +33,5 @@ data class Image(
     val docUrl: String,
 
     @Json(name = "datetime")
-    val dateTime: String
-)
+    val dateTime: Date
+) : SearchItem(dateTime)

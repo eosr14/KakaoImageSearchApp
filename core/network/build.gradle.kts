@@ -9,10 +9,13 @@ plugins {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:extension"))
+
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.converter.moshi)
     implementation(libs.moshi)
     implementation(libs.moshi.adapter)
+    implementation(libs.timber)
     ksp(libs.moshi.codegen)
 }

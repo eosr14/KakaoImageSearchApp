@@ -20,6 +20,12 @@ object TextType {
     )
 
     @Composable
+    fun Medium18_R() = TextStyle(
+        fontSize = 18f.toSp(),
+        fontWeight = FontWeight.Normal,
+    )
+
+    @Composable
     fun Medium18_B() = TextStyle(
         fontSize = 18f.toSp(),
         fontWeight = FontWeight.Bold,
@@ -42,8 +48,8 @@ object TextType {
         fontWeight = FontWeight.Bold,
     )
     @Composable
-    fun Medium13_R() = TextStyle(
-        fontSize = 13f.toSp(),
+    fun Medium11_R() = TextStyle(
+        fontSize = 11f.toSp(),
         fontWeight = FontWeight.Normal,
     )
 }

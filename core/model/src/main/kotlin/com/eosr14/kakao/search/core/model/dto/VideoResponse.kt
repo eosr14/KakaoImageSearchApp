@@ -2,6 +2,7 @@ package com.eosr14.kakao.search.core.model.dto
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.util.*
 
 
 @JsonClass(generateAdapter = true)
@@ -18,7 +19,7 @@ data class Video(
     val url: String,
 
     @Json(name = "datetime")
-    val dateTime: String,
+    val dateTime: Date,
 
     @Json(name = "play_time")
     val playTime: Long,
@@ -28,4 +29,4 @@ data class Video(
 
     @Json(name = "author")
     val author: String
-)
+) : SearchItem(dateTime)

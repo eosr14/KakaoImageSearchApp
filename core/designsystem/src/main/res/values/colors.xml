@@ -5,4 +5,8 @@
     <color name="grayscale_30">#C5CDD3</color>
     <color name="grayscale_50">#7D888C</color>
     <color name="grayscale_70">#515860</color>
+    <color name="violet_10">#FCD8FF</color>
+    <color name="red_30">#FFBABA</color>
+    <color name="black_50">#80000000</color>
+
 </resources>

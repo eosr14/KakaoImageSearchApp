@@ -8,6 +8,7 @@ import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -22,7 +23,10 @@ fun KakaoBottomNavigation(navController: NavHostController) {
         KakaoScreens.Bookmark
     )
 
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = Color.White,
+        elevation = 10.dp
+    ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 

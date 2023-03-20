@@ -1,5 +1,9 @@
 package com.eosr14.kakao.search.core.network.di
 
+import com.eosr14.kakao.search.core.network.adapter.MoshiDateAdapter
+import com.eosr14.kakao.search.core.network.service.KakaoService
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -8,7 +12,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.create
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -16,7 +19,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
-    private const val URL_HOST = "https://picsum.photos/"
+    private const val URL_HOST = "https://dapi.kakao.com"
 
     @Provides
     @Singleton
@@ -44,12 +47,13 @@ internal object NetworkModule {
             .build()
     }
 
-//    @Provides
-//    @Singleton
-//    fun providePicsumService(retrofit: Retrofit): PicsumService = retrofit.create()
-
+    @Provides
+    @Singleton
+    fun provideKakaoService(retrofit: Retrofit): KakaoService =
+        retrofit.create(KakaoService::class.java)
 
     private fun getMoshi() = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
+        .add(Date::class.java, MoshiDateAdapter().nullSafe())
         .build()
 }

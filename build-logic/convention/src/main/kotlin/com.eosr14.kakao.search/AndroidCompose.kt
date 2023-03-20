@@ -13,6 +13,9 @@ internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*,
         buildFeatures {
             compose = true
         }
+        dataBinding {
+            enable = true
+        }
 
         composeOptions {
             kotlinCompilerExtensionVersion =
