@@ -1,9 +1,7 @@
 package com.eosr14.kakao.search.core.network.di
 
-import com.eosr14.kakao.search.core.network.adapter.MoshiDateAdapter
+import com.eosr14.kakao.search.core.extension.moshi.getMoshi
 import com.eosr14.kakao.search.core.network.service.KakaoService
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -51,9 +49,4 @@ internal object NetworkModule {
     @Singleton
     fun provideKakaoService(retrofit: Retrofit): KakaoService =
         retrofit.create(KakaoService::class.java)
-
-    private fun getMoshi() = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .add(Date::class.java, MoshiDateAdapter().nullSafe())
-        .build()
 }

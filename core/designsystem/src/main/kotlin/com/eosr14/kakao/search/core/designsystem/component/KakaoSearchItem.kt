@@ -1,8 +1,5 @@
 package com.eosr14.kakao.search.core.designsystem.component
 
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,8 +19,10 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.eosr14.kakao.search.core.designsystem.R
 import com.eosr14.kakao.search.core.designsystem.theme.TextType
+import com.eosr14.kakao.search.core.designsystem.type.KakaoSearchItemType
 import com.eosr14.kakao.search.core.extension.SIMPLE_DATE_FORMAT_TYPE2
 import com.eosr14.kakao.search.core.extension.toFormatString
+import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun KakaoSearchItem(
@@ -32,6 +31,8 @@ fun KakaoSearchItem(
     playTime: Long? = null,
     onClickItem: () -> Unit,
     columnContent: @Composable ColumnScope.() -> Unit,
+//    hasBookmark: Flow<Boolean>,
+    hasBookmark: Boolean? = null,
     onClickBookmark: (() -> Unit)? = null,
 ) {
     Column(
@@ -84,12 +85,16 @@ fun KakaoSearchItem(
                 columnContent()
             }
 
-            onClickBookmark?.let {
+            if (hasBookmark != null && onClickBookmark != null) {
                 IconButton(
-                    onClick = { it() },
+                    onClick = { onClickBookmark() },
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.baseline_bookmark_24),
+                        painter = if (hasBookmark) {
+                            painterResource(id = R.drawable.baseline_bookmark_24)
+                        } else {
+                            painterResource(id = R.drawable.baseline_bookmark_border_24)
+                        },
                         contentDescription = null
                     )
                 }
@@ -169,22 +174,5 @@ fun VideoColumnContent(
         text = dateTime,
         style = TextType.Medium18_R(),
         color = colorResource(id = R.color.grayscale_50)
-    )
-}
-
-enum class KakaoSearchItemType(
-    @DrawableRes val drawableRes: Int,
-    @ColorRes val colorRes: Int,
-    @StringRes val titleRes: Int
-) {
-    IMAGE(
-        R.drawable.baseline_image_24,
-        R.color.violet_10,
-        R.string.image
-    ),
-    VIDEO(
-        R.drawable.baseline_video_settings_24,
-        R.color.red_30,
-        R.string.video
     )
 }

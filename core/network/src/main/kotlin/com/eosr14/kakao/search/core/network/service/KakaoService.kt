@@ -1,7 +1,7 @@
 package com.eosr14.kakao.search.core.network.service
 
-import com.eosr14.kakao.search.core.model.dto.ImageResponse
-import com.eosr14.kakao.search.core.model.dto.VideoResponse
+import com.eosr14.kakao.search.core.model.ImageResponse
+import com.eosr14.kakao.search.core.model.VideoResponse
 import com.eosr14.kakao.search.core.network.utils.DEFAULT_PAGE
 import com.eosr14.kakao.search.core.network.utils.NETWORK_DEFAULT_SIZE
 import retrofit2.http.*

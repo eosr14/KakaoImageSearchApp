@@ -1,4 +1,4 @@
-package com.eosr14.kakao.search.core.network.adapter
+package com.eosr14.kakao.search.core.extension.moshi
 
 import com.eosr14.kakao.search.core.extension.ISO_8601_FORMAT
 import com.squareup.moshi.*

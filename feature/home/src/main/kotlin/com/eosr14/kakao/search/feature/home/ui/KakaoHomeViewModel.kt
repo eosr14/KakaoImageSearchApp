@@ -7,11 +7,13 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.eosr14.kakao.search.core.model.dto.Image
-import com.eosr14.kakao.search.core.model.dto.SearchItem
-import com.eosr14.kakao.search.core.model.dto.Video
+import com.eosr14.kakao.search.core.model.Bookmark
+import com.eosr14.kakao.search.core.model.Image
+import com.eosr14.kakao.search.core.model.SearchItem
+import com.eosr14.kakao.search.core.model.Video
 import com.eosr14.kakao.search.core.network.service.KakaoService
 import com.eosr14.kakao.search.core.network.utils.NETWORK_DEFAULT_SIZE
+import com.eosr14.kakao.search.core.preferences.repository.BookmarkRepository
 import com.eosr14.kakao.search.feature.home.paging.KakaoPagingResult
 import com.eosr14.kakao.search.feature.home.paging.KakaoPagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class KakaoHomeViewModel @Inject internal constructor(
     private val service: KakaoService,
+    private val bookmarkRepository: BookmarkRepository
 ) : ViewModel() {
 
     private val _text = mutableStateOf("")
@@ -52,6 +55,16 @@ class KakaoHomeViewModel @Inject internal constructor(
     fun setSearchText(textState: String) {
         _text.value = textState
     }
+
+    fun onClickBookmark(bookmark: Bookmark, searchItem: SearchItem) {
+        if (hasBookmark(bookmark.url)) {
+            bookmarkRepository.deleteBookmark(bookmark.url)
+        } else {
+            bookmarkRepository.addBookmark(bookmark)
+        }
+    }
+
+    fun hasBookmark(uniqueField: String): Boolean = bookmarkRepository.hasBookmark(uniqueField)
 
     private fun sortBySearchItems(
         images: List<Image>,

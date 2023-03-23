@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.eosr14.kakao.search.core.navigation.KakaoScreens
+import com.eosr14.kakao.search.feature.bookmark.ui.KakaoBookmarkFragmentInCompose
 import com.eosr14.kakao.search.feature.home.ui.KakaoHomeFragmentInCompose
 
 @Composable
@@ -22,7 +23,7 @@ fun KakaoNavGraph(
         }
 
         composable(KakaoScreens.Bookmark.route) {
-//            KakaoHomeFragmentInCompose()
+            KakaoBookmarkFragmentInCompose()
         }
     }
 }

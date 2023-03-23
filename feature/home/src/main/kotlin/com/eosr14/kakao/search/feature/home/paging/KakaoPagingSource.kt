@@ -2,7 +2,7 @@ package com.eosr14.kakao.search.feature.home.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.eosr14.kakao.search.core.model.dto.SearchItem
+import com.eosr14.kakao.search.core.model.SearchItem
 import java.io.IOException
 
 

@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_home"
-        android:name="com.eosr14.kakao.search.feature.home.ui.KakaoHomeFragment"
+        android:id="@+id/fragment_bookmark"
+        android:name="com.eosr14.kakao.search.feature.bookmark.ui.KakaoBookmarkFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </layout>
