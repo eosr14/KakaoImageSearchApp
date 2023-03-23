@@ -1,6 +1,6 @@
 
 import com.android.build.gradle.LibraryExtension
-import com.eosr14.example.gallery.configureKotlinAndroid
+import com.eosr14.kakao.search.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
