@@ -22,7 +22,6 @@ import com.eosr14.kakao.search.core.designsystem.theme.TextType
 import com.eosr14.kakao.search.core.designsystem.type.KakaoSearchItemType
 import com.eosr14.kakao.search.core.extension.SIMPLE_DATE_FORMAT_TYPE2
 import com.eosr14.kakao.search.core.extension.toFormatString
-import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun KakaoSearchItem(
@@ -31,8 +30,7 @@ fun KakaoSearchItem(
     playTime: Long? = null,
     onClickItem: () -> Unit,
     columnContent: @Composable ColumnScope.() -> Unit,
-//    hasBookmark: Flow<Boolean>,
-    hasBookmark: Boolean? = null,
+    hasBookmark: Boolean = false,
     onClickBookmark: (() -> Unit)? = null,
 ) {
     Column(
@@ -85,9 +83,9 @@ fun KakaoSearchItem(
                 columnContent()
             }
 
-            if (hasBookmark != null && onClickBookmark != null) {
+            onClickBookmark?.let {
                 IconButton(
-                    onClick = { onClickBookmark() },
+                    onClick = { it() },
                 ) {
                     Icon(
                         painter = if (hasBookmark) {
@@ -157,7 +155,7 @@ fun ImageColumnContent(
 @Composable
 fun VideoColumnContent(
     title: String,
-    author: String,
+    author: String?,
     dateTime: String
 ) {
     Text(
@@ -166,10 +164,12 @@ fun VideoColumnContent(
         maxLines = 2,
         overflow = TextOverflow.Ellipsis
     )
-    Text(
-        text = author,
-        style = TextType.Medium18_B(),
-    )
+    author?.let {
+        Text(
+            text = it,
+            style = TextType.Medium18_B(),
+        )
+    }
     Text(
         text = dateTime,
         style = TextType.Medium18_R(),

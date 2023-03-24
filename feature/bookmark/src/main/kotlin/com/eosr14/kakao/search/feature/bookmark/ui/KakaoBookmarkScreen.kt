@@ -20,7 +20,9 @@ import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.eosr14.kakao.search.core.designsystem.component.ImageColumnContent
 import com.eosr14.kakao.search.core.designsystem.component.KakaoSearchItem
+import com.eosr14.kakao.search.core.designsystem.component.VideoColumnContent
 import com.eosr14.kakao.search.core.designsystem.theme.TextType
+import com.eosr14.kakao.search.core.designsystem.type.KakaoSearchItemType
 import com.eosr14.kakao.search.core.extension.startExternalUrl
 import com.eosr14.kakao.search.core.extension.toFormatString
 import com.eosr14.kakao.search.core.model.Bookmark
@@ -81,10 +83,17 @@ fun BookmarkList(
                 thumbnailPath = it.thumbnailUrl,
                 onClickItem = { context.startExternalUrl(it.url) },
                 columnContent = {
-                    ImageColumnContent(
-                        title = it.title,
-                        dateTime = it.dateTime.toFormatString()
-                    )
+                    when (it.type) {
+                        KakaoSearchItemType.IMAGE -> ImageColumnContent(
+                            title = it.title,
+                            dateTime = it.dateTime.toFormatString()
+                        )
+                        KakaoSearchItemType.VIDEO -> VideoColumnContent(
+                            title = it.title,
+                            author = it.author,
+                            dateTime = it.dateTime.toFormatString()
+                        )
+                    }
                 }
             )
         }

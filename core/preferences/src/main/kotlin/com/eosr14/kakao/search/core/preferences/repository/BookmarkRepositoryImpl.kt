@@ -4,8 +4,6 @@ import com.eosr14.kakao.search.core.extension.moshi.fromListJson
 import com.eosr14.kakao.search.core.extension.moshi.toJson
 import com.eosr14.kakao.search.core.model.Bookmark
 import com.eosr14.kakao.search.core.preferences.AppPreferences
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 internal class BookmarkRepositoryImpl @Inject constructor(
@@ -14,26 +12,27 @@ internal class BookmarkRepositoryImpl @Inject constructor(
 
     override fun getBookmarks(): List<Bookmark> = preferences.bookmarks.fromListJson()
 
-    override fun addBookmark(bookmark: Bookmark) {
+    override fun addBookmark(bookmark: Bookmark, onSuccessUpdate: () -> Unit) {
         with(getBookmarks().toMutableList()) {
             add(bookmark)
-            updateBookmarks()
+            updateBookmarks(onSuccessUpdate)
         }
     }
 
-    override fun deleteBookmark(uniqueField: String) {
+    override fun deleteBookmark(uniqueField: String, onSuccessUpdate: () -> Unit) {
         with(getBookmarks().toMutableList()) {
-            removeIf { it.url == uniqueField }
-            updateBookmarks()
+            removeIf { it.uniqueField == uniqueField }
+            updateBookmarks(onSuccessUpdate)
         }
     }
 
     override fun hasBookmark(uniqueField: String): Boolean =
-        getBookmarks().find { it.url == uniqueField } != null
+        getBookmarks().find { it.uniqueField == uniqueField } != null
 
-    private fun List<Bookmark>.updateBookmarks() {
+    private fun List<Bookmark>.updateBookmarks(onSuccessUpdate: () -> Unit) {
         toJson()?.let {
             preferences.bookmarks = it
+            onSuccessUpdate()
         }
     }
 }
