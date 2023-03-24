@@ -9,6 +9,5 @@ plugins {
 dependencies {
     implementation(project(":core:designsystem"))
     implementation(libs.moshi)
-    implementation(libs.androidx.lifecycle.runtimeCompose)
     ksp(libs.moshi.codegen)
 }

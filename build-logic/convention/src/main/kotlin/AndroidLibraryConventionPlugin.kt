@@ -1,4 +1,3 @@
-
 import com.android.build.gradle.LibraryExtension
 import com.eosr14.kakao.search.configureKotlinAndroid
 import org.gradle.api.Plugin

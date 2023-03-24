@@ -6,6 +6,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":core:testing"))
     implementation(libs.moshi)
     implementation(libs.moshi.adapter)
     implementation(libs.timber)
