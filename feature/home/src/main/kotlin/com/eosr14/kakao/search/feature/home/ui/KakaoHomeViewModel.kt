@@ -29,7 +29,7 @@ class KakaoHomeViewModel @Inject internal constructor(
 
     var searchItems = mutableStateListOf<SearchItem>()
 
-    fun getSearchItems() = requestItems()
+    fun getSearchItems() = requestItems(true)
 
     fun updateMoreItems() {
         if (text.isEmpty()) {
@@ -79,13 +79,24 @@ class KakaoHomeViewModel @Inject internal constructor(
         searchItems[updateIndex] = item
     }
 
-    private fun requestItems() {
+    private fun requestItems(isInitial: Boolean = false) {
         val apiSize = NETWORK_DEFAULT_SIZE / 2
         val apiPage = page.value
         viewModelScope.launch {
             val images = service.getImages(query = text, page = apiPage, size = apiSize)
             val videos = service.getVideos(query = text, page = apiPage, size = apiSize)
-            searchItems.addAll(sortBySearchItems(images.documents, videos.documents))
+            val sortByItems = sortBySearchItems(images.documents, videos.documents)
+            val items = if (isInitial) {
+                sortByItems.map {
+                    when (it.type) {
+                        KakaoSearchItemType.IMAGE -> (it as Image).copy(hasBookmark = hasBookmark(it.uniqueField))
+                        KakaoSearchItemType.VIDEO -> (it as Video).copy(hasBookmark = hasBookmark(it.uniqueField))
+                    }
+                }
+            } else {
+                sortByItems
+            }
+            searchItems.addAll(items)
             page.value = page.value + 1
         }
     }
