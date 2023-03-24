@@ -18,7 +18,6 @@ class KakaoBookmarkViewModel @Inject internal constructor(
 
     private val _bookmarks = MutableStateFlow<List<Bookmark>>(listOf())
     val bookmarks: StateFlow<List<Bookmark>> = _bookmarks.asStateFlow()
-
     fun getBookmarks() {
         viewModelScope.launch {
             val bookmarks = bookmarkRepository.getBookmarks()

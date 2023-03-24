@@ -5,7 +5,7 @@ import com.eosr14.kakao.search.core.model.Bookmark
 
 interface BookmarkRepository {
     fun getBookmarks(): List<Bookmark>
-    fun addBookmark(bookmark: Bookmark)
-    fun deleteBookmark(uniqueField: String)
+    fun addBookmark(bookmark: Bookmark, onSuccessUpdate: () -> Unit)
+    fun deleteBookmark(uniqueField: String, onSuccessUpdate: () -> Unit)
     fun hasBookmark(uniqueField: String): Boolean
 }
