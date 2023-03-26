@@ -86,6 +86,9 @@ class KakaoHomeViewModel @Inject internal constructor(
             val images = service.getImages(query = text, page = apiPage, size = apiSize)
             val videos = service.getVideos(query = text, page = apiPage, size = apiSize)
             val sortByItems = sortBySearchItems(images.documents, videos.documents)
+            if (isInitial) {
+                searchItems.clear()
+            }
             val items = if (isInitial) {
                 sortByItems.map {
                     when (it.type) {
